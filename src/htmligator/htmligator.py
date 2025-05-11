@@ -1,7 +1,7 @@
 import sys
 import os
 import zipfile
-from htmligator.util import get_folder_from_arguments, folder_to_list
+from htmligator.util import folder_to_list
 
 
 def get_html_for_file(name, folder):
@@ -51,8 +51,7 @@ def zip_folder(parent_path, folder_name, html_files, zip_file):
             zipf.writestr(file["name"], file["contents"])
 
 
-def htmligator():
-    folder = get_folder_from_arguments()
+def htmligator(folder):
     if not os.path.exists(folder):
         print(f"Error: {folder} does not exist")
         sys.exit(1)

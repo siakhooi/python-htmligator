@@ -1,14 +1,5 @@
-import sys
 import os
 from natsort import natsorted
-
-
-def get_folder_from_arguments():
-    if len(sys.argv) == 2:
-        return sys.argv[1]
-    else:
-        print("Usage: htmligators folder_name", file=sys.stderr)
-        sys.exit(1)
 
 
 def get_file_object(name, path):

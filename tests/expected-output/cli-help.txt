@@ -1,0 +1,9 @@
+usage: cli.py [-h] folder_name
+
+generate wrapper html files to navigate folder contents
+
+positional arguments:
+  folder_name  folder to start create HTML files
+
+options:
+  -h, --help   show this help message and exit
