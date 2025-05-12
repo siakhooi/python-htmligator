@@ -2,7 +2,9 @@ from htmligator.util import (
     get_file_object,
     get_folder_object,
     folder_to_list,
+    get_zip_path,
 )
+import os
 
 
 def test_get_file_object():
@@ -67,3 +69,34 @@ def test_folder_to_list(tmp_path):
         "path": "sample1/sub2",
         "type": "folder",
     }
+
+
+def test_get_zip_path(tmp_path):
+    folder_name = "sample"
+    zip_path = get_zip_path(tmp_path, folder_name)
+
+    assert zip_path == os.path.join(tmp_path, f"{folder_name}.zip")
+
+
+def test_get_zip_path_1(tmp_path):
+    folder_name = "sample"
+    p1 = tmp_path / f"{folder_name}.zip"
+    p1.touch()
+
+    zip_path = get_zip_path(tmp_path, folder_name)
+
+    assert zip_path == os.path.join(tmp_path, f"{folder_name}-1.zip")
+
+
+def test_get_zip_path_3(tmp_path):
+    folder_name = "sample"
+    p1 = tmp_path / f"{folder_name}.zip"
+    p1.touch()
+    p1 = tmp_path / f"{folder_name}-1.zip"
+    p1.touch()
+    p1 = tmp_path / f"{folder_name}-2.zip"
+    p1.touch()
+
+    zip_path = get_zip_path(tmp_path, folder_name)
+
+    assert zip_path == os.path.join(tmp_path, f"{folder_name}-3.zip")

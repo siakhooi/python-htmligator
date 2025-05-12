@@ -1,7 +1,7 @@
 import sys
 import os
 import zipfile
-from htmligator.util import folder_to_list
+from htmligator.util import folder_to_list, get_zip_path
 
 
 def get_html_for_file(name, folder):
@@ -37,9 +37,8 @@ def generate_html_files(html_files, file_list, folder_name, parent_path=""):
     html_files.append({"name": html_file_name, "contents": file_contents})
 
 
-def zip_folder(parent_path, folder_name, html_files, zip_file):
+def zip_folder(parent_path, folder_name, html_files, zip_path):
 
-    zip_path = os.path.join(parent_path, zip_file)
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         file_path = os.path.join(parent_path, folder_name)
         for root, _, files in os.walk(file_path):
@@ -64,9 +63,11 @@ def htmligator(folder):
     folder_name = os.path.basename(folder_path)
     parent_path = os.path.dirname(folder_path)
 
+    zip_path = get_zip_path(os.getcwd(), folder_name)
+
     file_list = folder_to_list(folder_path, folder_name)
 
     html_files = []
     generate_html_files(html_files, file_list, folder_name)
 
-    zip_folder(parent_path, folder_name, html_files, f"{folder_name}.zip")
+    zip_folder(parent_path, folder_name, html_files, zip_path)

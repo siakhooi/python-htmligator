@@ -1,10 +1,10 @@
 help:
 clean:
-	rm -rf dist target coverage sample htmligator-0.1.0.tar.gz
+	rm -rf dist target coverage sample1.zip
 run:
 	rm -f tests/test-data/sample1.html tests/test-data/sample1/*.html tests/test-data/sample1.zip
 	poetry run htmligator tests/test-data/sample1
-	unzip -t tests/test-data/sample1.zip
+	unzip -t ./sample1.zip
 build:
 	scripts/set-version.sh
 	poetry build

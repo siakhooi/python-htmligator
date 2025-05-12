@@ -28,3 +28,21 @@ def folder_to_list(root_path, relative_root):
                 )
             )
     return natsorted(file_list, key=lambda x: x["name"])
+
+
+def get_zip_path(zip_parent_path, folder_name):
+    zip_name = f"{folder_name}.zip"
+
+    zip_path = os.path.join(zip_parent_path, zip_name)
+    index = 1
+    while os.path.exists(zip_path):
+        zip_name = f"{folder_name}-{index}.zip"
+        zip_path = os.path.join(zip_parent_path, zip_name)
+        index += 1
+        if index > 100:
+            raise RuntimeError(
+                "Error: Too many zip files with the same name. "
+                "Please remove or rename the existing zip files."
+            )
+
+    return zip_path
