@@ -3,10 +3,11 @@ from htmligator.cli import run
 import pytest
 
 
-def test_run(monkeypatch, capsys):
+@pytest.mark.parametrize("options", [[], ["-v"], ["-v", "-i"]])
+def test_run(monkeypatch, capsys, options):
     monkeypatch.setattr(
         "sys.argv",
-        ["cli.py"],
+        ["cli.py"] + options,
     )
 
     with pytest.raises(SystemExit) as pytest_wrapped_e:
