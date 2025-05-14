@@ -38,3 +38,53 @@ def test_run_help(monkeypatch, capsys, option_help):
 
     captured = capsys.readouterr()
     assert captured.out == expected_output
+
+
+def test_run_on_special_file(monkeypatch, capsys):
+    monkeypatch.setattr(
+        "sys.argv",
+        ["cli.py", "/dev/null"],
+    )
+
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        run()
+    assert pytest_wrapped_e.type == SystemExit
+    assert pytest_wrapped_e.value.code == 2
+    expected_output = "Error: Path is not a folder\n"
+    captured = capsys.readouterr()
+    assert captured.err == expected_output
+
+
+def test_run_on_a_file(monkeypatch, capsys, tmp_path):
+    p1 = tmp_path / "sample.txt"
+    p1.touch()
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["cli.py", str(p1)],
+    )
+
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        run()
+    assert pytest_wrapped_e.type == SystemExit
+    assert pytest_wrapped_e.value.code == 2
+    expected_output = "Error: Path is not a folder\n"
+    captured = capsys.readouterr()
+    assert captured.err == expected_output
+
+
+def test_run_on_not_exist_file(monkeypatch, capsys, tmp_path):
+    p1 = tmp_path / "sample"
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["cli.py", str(p1)],
+    )
+
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        run()
+    assert pytest_wrapped_e.type == SystemExit
+    assert pytest_wrapped_e.value.code == 1
+    expected_output = "Error: Path not found\n"
+    captured = capsys.readouterr()
+    assert captured.err == expected_output

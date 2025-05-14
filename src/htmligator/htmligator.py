@@ -1,6 +1,6 @@
-import sys
 import os
 import zipfile
+from htmligator.exception import PathIsNotAFolderError, PathNotFoundError
 from htmligator.util import folder_to_list, get_zip_path
 
 
@@ -52,11 +52,9 @@ def zip_folder(parent_path, folder_name, html_files, zip_path):
 
 def htmligator(folder):
     if not os.path.exists(folder):
-        print(f"Error: {folder} does not exist")
-        sys.exit(1)
+        raise PathNotFoundError()
     if not os.path.isdir(folder):
-        print(f"Error: {folder} is not a folder")
-        sys.exit(2)
+        raise PathIsNotAFolderError()
 
     folder_path = os.path.abspath(folder)
 
