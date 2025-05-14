@@ -108,3 +108,28 @@ def test_run_on_not_exist_file(monkeypatch, capsys, tmp_path):
     expected_output = "Error: Path not found\n"
     captured = capsys.readouterr()
     assert captured.err == expected_output
+
+
+def test_get_zip_path_100(monkeypatch, capsys, tmp_path):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+    p1 = tmp_path / f"{folder_name}.zip"
+    p1.touch()
+    for i in range(1, 100):
+        p1 = tmp_path / f"{folder_name}-{i}.zip"
+        p1.touch()
+
+    monkeypatch.setattr("os.getcwd", lambda: str(tmp_path))
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["htmligator", str(tmp_path / folder_name)],
+    )
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        run()
+    assert pytest_wrapped_e.type == SystemExit
+    assert pytest_wrapped_e.value.code == 3
+    expected_output = "Error: Too many zip files with the same name\n"
+    captured = capsys.readouterr()
+    assert captured.err == expected_output
