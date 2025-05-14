@@ -6,6 +6,7 @@ from htmligator.exception import (
 from htmligator.htmligator import htmligator
 import argparse
 import sys
+from importlib.metadata import version
 
 
 def print_to_stderr_and_exit(e, exit_code):
@@ -14,10 +15,15 @@ def print_to_stderr_and_exit(e, exit_code):
 
 
 def run():
+    __version__ = version("htmligator")
+
     parser = argparse.ArgumentParser(
         description="generate wrapper html files to navigate folder contents"
     )
 
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"%(prog)s {__version__}"
+    )
     parser.add_argument(
         "folder_name", help="folder to start create HTML files"
     )  # NoQA: E501

@@ -1,0 +1,2 @@
+usage: htmligator [-h] [-v] folder_name
+htmligator: error: the following arguments are required: folder_name

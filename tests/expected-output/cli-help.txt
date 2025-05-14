@@ -1,9 +1,10 @@
-usage: cli.py [-h] folder_name
+usage: htmligator [-h] [-v] folder_name
 
 generate wrapper html files to navigate folder contents
 
 positional arguments:
-  folder_name  folder to start create HTML files
+  folder_name    folder to start create HTML files
 
 options:
-  -h, --help   show this help message and exit
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit
