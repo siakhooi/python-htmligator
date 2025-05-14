@@ -1,4 +1,5 @@
 import os
+from htmligator.exception import TooManyZipFilesError
 from natsort import natsorted
 
 
@@ -40,9 +41,6 @@ def get_zip_path(zip_parent_path, folder_name):
         zip_path = os.path.join(zip_parent_path, zip_name)
         index += 1
         if index > 100:
-            raise RuntimeError(
-                "Error: Too many zip files with the same name. "
-                "Please remove or rename the existing zip files."
-            )
+            raise TooManyZipFilesError()
 
     return zip_path

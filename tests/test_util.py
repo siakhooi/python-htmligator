@@ -1,3 +1,4 @@
+from htmligator.exception import TooManyZipFilesError
 from htmligator.util import (
     get_file_object,
     get_folder_object,
@@ -5,6 +6,7 @@ from htmligator.util import (
     get_zip_path,
 )
 import os
+import pytest
 
 
 def test_get_file_object():
@@ -100,3 +102,15 @@ def test_get_zip_path_3(tmp_path):
     zip_path = get_zip_path(tmp_path, folder_name)
 
     assert zip_path == os.path.join(tmp_path, f"{folder_name}-3.zip")
+
+
+def test_get_zip_path_100(tmp_path):
+    folder_name = "sample"
+    p1 = tmp_path / f"{folder_name}.zip"
+    p1.touch()
+    for i in range(1, 100):
+        p1 = tmp_path / f"{folder_name}-{i}.zip"
+        p1.touch()
+
+    with pytest.raises(TooManyZipFilesError):
+        get_zip_path(tmp_path, folder_name)
