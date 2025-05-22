@@ -25,18 +25,20 @@ def run():
         "-v", "--version", action="version", version=f"%(prog)s {__version__}"
     )
     parser.add_argument(
-        "folder_name", help="folder to start create HTML files"
+        "top_folder", help="folder to start create HTML files", nargs="+"
     )  # NoQA: E501
 
     args = parser.parse_args()
 
-    try:
-        htmligator(args.folder_name)
-    except PathNotFoundError as e:
-        print_to_stderr_and_exit(e, 1)
-    except PathIsNotAFolderError as e:
-        print_to_stderr_and_exit(e, 2)
-    except TooManyZipFilesError as e:
-        print_to_stderr_and_exit(e, 3)
-    except Exception as e:
-        print_to_stderr_and_exit(e, 4)
+    for folder in args.top_folder:
+
+        try:
+            htmligator(folder)
+        except PathNotFoundError as e:
+            print_to_stderr_and_exit(e, 1)
+        except PathIsNotAFolderError as e:
+            print_to_stderr_and_exit(e, 2)
+        except TooManyZipFilesError as e:
+            print_to_stderr_and_exit(e, 3)
+        except Exception as e:
+            print_to_stderr_and_exit(e, 4)

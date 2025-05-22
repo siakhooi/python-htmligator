@@ -1,9 +1,9 @@
-usage: htmligator [-h] [-v] folder_name
+usage: htmligator [-h] [-v] top_folder [top_folder ...]
 
 generate wrapper html files to navigate folder contents
 
 positional arguments:
-  folder_name    folder to start create HTML files
+  top_folder     folder to start create HTML files
 
 options:
   -h, --help     show this help message and exit

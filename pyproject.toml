@@ -1,6 +1,6 @@
 [project]
 name = "htmligator"
-version = "0.7.0"
+version = "0.8.0"
 description = "generate wrapper html files to navigate folder contents"
 authors = [
     {name = "Siak Hooi",email = "siakhooi@gmail.com"}

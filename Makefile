@@ -3,7 +3,7 @@ clean:
 	rm -rf dist target coverage sample1.zip
 run:
 	rm -f tests/test-data/sample1.html tests/test-data/sample1/*.html tests/test-data/sample1.zip
-	poetry run htmligator tests/test-data/sample1
+	poetry run htmligator tests/test-data/sample1 tests/test-data/sample1
 	unzip -t ./sample1.zip
 build:
 	scripts/set-version.sh

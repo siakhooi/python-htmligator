@@ -42,7 +42,7 @@ def test_run_show_version(monkeypatch, capsys, option_version):
 
 
 @pytest.mark.parametrize("options", [[], ["-p"], ["-p", "-i"]])
-def test_run(monkeypatch, capsys, options):
+def test_run_wrong_options(monkeypatch, capsys, options):
     monkeypatch.setattr(
         "sys.argv",
         ["htmligator"] + options,
@@ -110,7 +110,7 @@ def test_run_on_not_exist_file(monkeypatch, capsys, tmp_path):
     assert captured.err == expected_output
 
 
-def test_get_zip_path_100(monkeypatch, capsys, tmp_path):
+def test_run_100_zip(monkeypatch, capsys, tmp_path):
     folder_name = "sample"
     d1 = tmp_path / folder_name
     d1.mkdir()
