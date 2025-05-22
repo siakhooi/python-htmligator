@@ -2,22 +2,18 @@ import os
 import zipfile
 from htmligator.exception import PathIsNotAFolderError, PathNotFoundError
 from htmligator.util import folder_to_list, get_zip_path
-
-
-def get_html_for_file(name, folder):
-    return f'<li><a href="{folder}/{name}">{name}</a></li>'
-
-
-def get_html_for_folder(name, folder):
-    return f'<li><a href="{folder}/{name}.html">{name}</a></li>'
+from htmligator.html import (
+    get_html_for_file,
+    get_html_for_folder,
+    get_html_for_header,
+    get_html_for_footer,
+)
 
 
 def generate_html_files(html_files, file_list, folder_name, parent_path=""):
     html_file_name = os.path.join(parent_path, f"{folder_name}.html")
-    file_contents = ""
-    file_contents += "<html><body>"
-    file_contents += f"<h1>{folder_name}</h1>"
-    file_contents += "<ul>"
+
+    file_contents = get_html_for_header(folder_name)
 
     for item in file_list:
         if item["type"] == "file":
@@ -28,12 +24,11 @@ def generate_html_files(html_files, file_list, folder_name, parent_path=""):
                 html_files,
                 item["children"],
                 item["name"],
-                os.path.join(parent_path, folder_name)
+                os.path.join(parent_path, folder_name),
             )
 
-    file_contents += "</ul>"
-    file_contents += f"<h1>{folder_name}</h1>"
-    file_contents += "</body></html>"
+    file_contents += get_html_for_footer(folder_name)
+
     html_files.append({"name": html_file_name, "contents": file_contents})
 
 
