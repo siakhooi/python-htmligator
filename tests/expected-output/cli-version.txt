@@ -1,1 +1,1 @@
-htmligator 0.8.2
+htmligator 0.8.3

@@ -1,5 +1,6 @@
 import os
 import zipfile
+from typing import List, Dict, Any
 from htmligator.exception import PathIsNotAFolderError, PathNotFoundError
 from htmligator.util import folder_to_list, get_zip_path
 from htmligator.html import (
@@ -11,11 +12,16 @@ from htmligator.html import (
 
 
 class Htmligator:
-    def generate_html_files(self, html_files,
-                            file_list, folder_name, parent_path=""):
-        html_file_name = os.path.join(parent_path, f"{folder_name}.html")
+    def generate_html_files(
+        self,
+        html_files: List[Dict[str, str]],
+        file_list: List[Dict[str, Any]],
+        folder_name: str,
+        parent_path: str = "",
+    ) -> None:
+        html_file_name: str = os.path.join(parent_path, f"{folder_name}.html")
 
-        file_contents = get_html_for_header(folder_name)
+        file_contents: str = get_html_for_header(folder_name)
 
         for item in file_list:
             if item["type"] == "file":
@@ -33,10 +39,16 @@ class Htmligator:
 
         html_files.append({"name": html_file_name, "contents": file_contents})
 
-    def zip_folder(self, parent_path, folder_name, html_files, zip_path):
+    def zip_folder(
+        self,
+        parent_path: str,
+        folder_name: str,
+        html_files: List[Dict[str, str]],
+        zip_path: str,
+    ) -> None:
 
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-            file_path = os.path.join(parent_path, folder_name)
+            file_path: str = os.path.join(parent_path, folder_name)
             for root, _, files in os.walk(file_path):
                 for file in files:
                     file_path = os.path.join(root, file)
@@ -45,22 +57,24 @@ class Htmligator:
             for file in html_files:
                 zipf.writestr(file["name"], file["contents"])
 
-    def htmligator(self, folder):
+    def htmligator(self, folder: str) -> None:
         if not os.path.exists(folder):
             raise PathNotFoundError()
         if not os.path.isdir(folder):
             raise PathIsNotAFolderError()
 
-        folder_path = os.path.abspath(folder)
+        folder_path: str = os.path.abspath(folder)
 
-        folder_name = os.path.basename(folder_path)
-        parent_path = os.path.dirname(folder_path)
+        folder_name: str = os.path.basename(folder_path)
+        parent_path: str = os.path.dirname(folder_path)
 
-        zip_path = get_zip_path(os.getcwd(), folder_name)
+        zip_path: str = get_zip_path(os.getcwd(), folder_name)
 
-        file_list = folder_to_list(folder_path, folder_name)
+        file_list: List[Dict[str, Any]] = folder_to_list(
+            folder_path, folder_name
+        )
 
-        html_files = []
+        html_files: List[Dict[str, str]] = []
         self.generate_html_files(html_files, file_list, folder_name)
 
         self.zip_folder(parent_path, folder_name, html_files, zip_path)

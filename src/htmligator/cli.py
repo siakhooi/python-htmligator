@@ -9,15 +9,15 @@ import sys
 from importlib.metadata import version
 
 
-def print_to_stderr_and_exit(e, exit_code):
+def print_to_stderr_and_exit(e: Exception, exit_code: int) -> None:
     print(f"Error: {e.message}", file=sys.stderr)
     exit(exit_code)
 
 
-def run():
-    __version__ = version("htmligator")
+def run() -> None:
+    __version__: str = version("htmligator")
 
-    parser = argparse.ArgumentParser(
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(
         description="generate wrapper html files to navigate folder contents"
     )
 
@@ -28,10 +28,10 @@ def run():
         "top_folder", help="folder to start create HTML files", nargs="+"
     )  # NoQA: E501
 
-    args = parser.parse_args()
+    args: argparse.Namespace = parser.parse_args()
 
     for folder in args.top_folder:
-        htmligator = Htmligator()
+        htmligator: Htmligator = Htmligator()
 
         try:
             htmligator.htmligator(folder)
