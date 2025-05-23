@@ -1,6 +1,4 @@
-from htmligator.htmligator import (
-    generate_html_files,
-)
+from htmligator.htmligator import Htmligator
 
 
 def test_generate_html_files():
@@ -19,7 +17,8 @@ def test_generate_html_files():
     folder_name = "sample1"
 
     html_files = []
-    generate_html_files(html_files, file_list, folder_name)
+    htmligator = Htmligator()
+    htmligator.generate_html_files(html_files, file_list, folder_name)
 
     assert len(html_files) == 2
     assert html_files[1]["name"] == "sample1.html"

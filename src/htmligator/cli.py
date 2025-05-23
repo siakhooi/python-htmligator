@@ -3,7 +3,7 @@ from htmligator.exception import (
     PathNotFoundError,
     TooManyZipFilesError,
 )
-from htmligator.htmligator import htmligator
+from htmligator.htmligator import Htmligator
 import argparse
 import sys
 from importlib.metadata import version
@@ -31,9 +31,10 @@ def run():
     args = parser.parse_args()
 
     for folder in args.top_folder:
+        htmligator = Htmligator()
 
         try:
-            htmligator(folder)
+            htmligator.htmligator(folder)
         except PathNotFoundError as e:
             print_to_stderr_and_exit(e, 1)
         except PathIsNotAFolderError as e:
