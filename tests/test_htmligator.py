@@ -52,3 +52,32 @@ def test_generate_html_files():
     expected += "</html>"
 
     assert expected == html_files[0]["contents"]
+
+
+def test_zip_folder(tmp_path):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+    p1 = d1 / "file1.txt"
+    p1.touch()
+    p2 = d1 / "file2.txt"
+    p2.touch()
+
+    zip_path = tmp_path / f"{folder_name}.zip"
+    html_files = [{"name": "html_file_name", "contents": "file_contents"}]
+    htmligator = Htmligator()
+    htmligator.zip_folder(tmp_path, folder_name, html_files, zip_path)
+
+    assert zip_path.exists()
+    assert zip_path.is_file()
+    assert zip_path.stat().st_size > 0
+
+    import zipfile
+
+    with zipfile.ZipFile(zip_path, "r") as zipf:
+        assert len(zipf.namelist()) == 3
+        assert "sample/file1.txt" in zipf.namelist()
+        assert "sample/file2.txt" in zipf.namelist()
+        assert "html_file_name" in zipf.namelist()
+
+        assert zipf.read("html_file_name").decode() == "file_contents"
