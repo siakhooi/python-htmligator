@@ -81,3 +81,31 @@ def test_zip_folder(tmp_path):
         assert "html_file_name" in zipf.namelist()
 
         assert zipf.read("html_file_name").decode() == "file_contents"
+
+
+def test_htmligator(tmp_path, monkeypatch):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+    p1 = d1 / "file1.txt"
+    p1.touch()
+    p2 = d1 / "file2.txt"
+    p2.touch()
+
+    monkeypatch.setattr("os.getcwd", lambda: str(tmp_path))
+
+    htmligator = Htmligator()
+    htmligator.htmligator(d1)
+
+    zip_path = tmp_path / f"{folder_name}.zip"
+    assert zip_path.exists()
+    assert zip_path.is_file()
+    assert zip_path.stat().st_size > 0
+
+    import zipfile
+
+    with zipfile.ZipFile(zip_path, "r") as zipf:
+        assert len(zipf.namelist()) == 3
+        assert "sample/file1.txt" in zipf.namelist()
+        assert "sample/file2.txt" in zipf.namelist()
+        assert "sample.html" in zipf.namelist()
