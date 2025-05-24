@@ -133,3 +133,30 @@ def test_run_100_zip(monkeypatch, capsys, tmp_path):
     expected_output = "Error: Too many zip files with the same name\n"
     captured = capsys.readouterr()
     assert captured.err == expected_output
+
+
+def test_run_runtime_exception(monkeypatch, capsys, tmp_path):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+
+    def raise_runtime_error(*args, **kwargs):
+        raise RuntimeError("Test error")
+
+    monkeypatch.setattr(
+        "htmligator.htmligator.Htmligator.htmligator",
+        raise_runtime_error,
+    )
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["htmligator", str(tmp_path / folder_name)],
+    )
+
+    with pytest.raises(SystemExit) as pytest_wrapped_e:
+        run()
+    assert pytest_wrapped_e.type == SystemExit
+    assert pytest_wrapped_e.value.code == 4
+    expected_output = "Error: Test error\n"
+    captured = capsys.readouterr()
+    assert captured.err == expected_output
