@@ -1,0 +1,14 @@
+<html>
+<head>
+<style type='text/css'>div{width:100%} img{width:100%}</style>
+</head>
+<body>
+<h1>sample1</h1>
+<ul>
+<li><a href="sample1/file1.txt">file1.txt</a></li>
+<li><a href="sample1/file2.txt">file2.txt</a></li>
+<li><a href="sample1/folder1.html">folder1</a></li>
+</ul>
+<h1>sample1</h1>
+</body>
+</html>

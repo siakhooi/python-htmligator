@@ -1,0 +1,13 @@
+<html>
+<head>
+<style type='text/css'>div{width:100%} img{width:100%}</style>
+</head>
+<body>
+<h1>folder1</h1>
+<ul>
+<li><a href="folder1/file3.txt">file3.txt</a></li>
+<li><a href="folder1/file4.txt">file4.txt</a></li>
+</ul>
+<h1>folder1</h1>
+</body>
+</html>

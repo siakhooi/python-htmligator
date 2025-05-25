@@ -24,42 +24,17 @@ def test_generate_html_files():
     assert html_files[1]["name"] == "sample1.html"
     assert html_files[0]["name"] == "sample1/folder1.html"
 
-    expected = ""
-    expected += "<html>"
-    expected += "<head>"
-    expected += (
-        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
-    )
-    expected += "</head>"
-    expected += "<body>"
-    expected += "<h1>sample1</h1>"
-    expected += "<ul>"
-    expected += '<li><a href="sample1/file1.txt">file1.txt</a></li>'
-    expected += '<li><a href="sample1/file2.txt">file2.txt</a></li>'
-    expected += '<li><a href="sample1/folder1.html">folder1</a></li>'
-    expected += "</ul>"
-    expected += "<h1>sample1</h1>"
-    expected += "</body>"
-    expected += "</html>"
+    with open(
+        "tests/expected-output/generate_html_files_file_1.txt", "r"
+    ) as f:  # noqa: E501
+        expected = "".join([line.rstrip() for line in f])
 
     assert expected == html_files[1]["contents"]
 
-    expected = ""
-    expected += "<html>"
-    expected += "<head>"
-    expected += (
-        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
-    )
-    expected += "</head>"
-    expected += "<body>"
-    expected += "<h1>folder1</h1>"
-    expected += "<ul>"
-    expected += '<li><a href="folder1/file3.txt">file3.txt</a></li>'
-    expected += '<li><a href="folder1/file4.txt">file4.txt</a></li>'
-    expected += "</ul>"
-    expected += "<h1>folder1</h1>"
-    expected += "</body>"
-    expected += "</html>"
+    with open(
+        "tests/expected-output/generate_html_files_file_0.txt", "r"
+    ) as f:  # noqa: E501
+        expected = "".join([line.rstrip() for line in f])
 
     assert expected == html_files[0]["contents"]
 
