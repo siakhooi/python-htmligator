@@ -12,6 +12,12 @@ from htmligator.html import (
 
 
 class Htmligator:
+
+    def __init__(self, config: Dict[str, Any] = None) -> None:
+        if config is None:
+            config = {"use_img": False}
+        self.config = config
+
     def generate_html_files(
         self,
         html_files: List[Dict[str, str]],

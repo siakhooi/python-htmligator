@@ -26,6 +26,11 @@ def test_generate_html_files():
 
     expected = ""
     expected += "<html>"
+    expected += "<head>"
+    expected += (
+        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
+    )
+    expected += "</head>"
     expected += "<body>"
     expected += "<h1>sample1</h1>"
     expected += "<ul>"
@@ -41,6 +46,11 @@ def test_generate_html_files():
 
     expected = ""
     expected += "<html>"
+    expected += "<head>"
+    expected += (
+        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
+    )
+    expected += "</head>"
     expected += "<body>"
     expected += "<h1>folder1</h1>"
     expected += "<ul>"
@@ -109,3 +119,66 @@ def test_htmligator(tmp_path, monkeypatch):
         assert "sample/file1.txt" in zipf.namelist()
         assert "sample/file2.txt" in zipf.namelist()
         assert "sample.html" in zipf.namelist()
+
+
+def test_generate_html_files_with_image_files():
+    file_list = [
+        {"name": "file1.txt", "type": "file"},
+        {"name": "file2.jpg", "type": "file"},
+        {
+            "name": "folder1",
+            "type": "folder",
+            "children": [
+                {"name": "file3.txt", "type": "file"},
+                {"name": "file4.jpg", "type": "file"},
+            ],
+        },
+    ]
+    folder_name = "sample1"
+
+    html_files = []
+    htmligator = Htmligator()
+    htmligator.generate_html_files(html_files, file_list, folder_name)
+
+    assert len(html_files) == 2
+    assert html_files[1]["name"] == "sample1.html"
+    assert html_files[0]["name"] == "sample1/folder1.html"
+
+    expected = ""
+    expected += "<html>"
+    expected += "<head>"
+    expected += (
+        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
+    )
+    expected += "</head>"
+    expected += "<body>"
+    expected += "<h1>sample1</h1>"
+    expected += "<ul>"
+    expected += '<li><a href="sample1/file1.txt">file1.txt</a></li>'
+    expected += '<li><div><img src="sample1/file2.jpg" /></div></li>'
+    expected += '<li><a href="sample1/folder1.html">folder1</a></li>'
+    expected += "</ul>"
+    expected += "<h1>sample1</h1>"
+    expected += "</body>"
+    expected += "</html>"
+
+    assert expected == html_files[1]["contents"]
+
+    expected = ""
+    expected += "<html>"
+    expected += "<head>"
+    expected += (
+        "<style type='text/css'>div{width:100%} img{width:100%}</style>"  # noqa: E501
+    )
+    expected += "</head>"
+    expected += "<body>"
+    expected += "<h1>folder1</h1>"
+    expected += "<ul>"
+    expected += '<li><a href="folder1/file3.txt">file3.txt</a></li>'
+    expected += '<li><div><img src="folder1/file4.jpg" /></div></li>'
+    expected += "</ul>"
+    expected += "<h1>folder1</h1>"
+    expected += "</body>"
+    expected += "</html>"
+
+    assert expected == html_files[0]["contents"]

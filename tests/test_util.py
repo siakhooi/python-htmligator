@@ -4,6 +4,7 @@ from htmligator.util import (
     get_folder_object,
     folder_to_list,
     get_zip_path,
+    is_browser_supported_image_files,
 )
 import os
 import pytest
@@ -51,22 +52,16 @@ def test_folder_to_list(tmp_path):
     assert len(folder_to_list_result) == 2
     assert (folder_to_list_result[0]) == {
         "children": [
-            {
-                "name": "h1.txt",
-                "path": "sample1/sub1/h1.txt",
-                "type": "file"
-            }],
+            {"name": "h1.txt", "path": "sample1/sub1/h1.txt", "type": "file"}
+        ],  # noqa: E501
         "name": "sub1",
         "path": "sample1/sub1",
         "type": "folder",
     }
     assert (folder_to_list_result[1]) == {
         "children": [
-            {
-                "name": "h2.txt",
-                "path": "sample1/sub2/h2.txt",
-                "type": "file"
-            }],
+            {"name": "h2.txt", "path": "sample1/sub2/h2.txt", "type": "file"}
+        ],  # noqa: E501
         "name": "sub2",
         "path": "sample1/sub2",
         "type": "folder",
@@ -114,3 +109,27 @@ def test_get_zip_path_100(tmp_path):
 
     with pytest.raises(TooManyZipFilesError):
         get_zip_path(tmp_path, folder_name)
+
+
+@pytest.mark.parametrize(
+    "filename", ["a.jpg", "b.jpeg", "c.png", "d.gif", "e.webp"]
+)  # noqa: E501
+def test_is_browser_supported_image_files(filename):
+    assert is_browser_supported_image_files(filename)
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "a.jpg1",
+        "b.jpeg2",
+        "c.png3",
+        "d.gif4",
+        "e.webp5",
+        "a.txt",
+        ".jpg",
+        ".png",
+    ],
+)
+def test_is_not_browser_supported_image_files(filename):
+    assert not is_browser_supported_image_files(filename)

@@ -28,10 +28,17 @@ def run() -> None:
         "top_folder", help="folder to start create HTML files", nargs="+"
     )  # NoQA: E501
 
+    parser.add_argument(
+        "-i",
+        "--img",
+        action="store_false",
+        help="use IMG tag for images files",
+    )
+
     args: argparse.Namespace = parser.parse_args()
 
     for folder in args.top_folder:
-        htmligator: Htmligator = Htmligator()
+        htmligator: Htmligator = Htmligator({"use_img": args.img})
 
         try:
             htmligator.htmligator(folder)

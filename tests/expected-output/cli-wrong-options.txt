@@ -1,2 +1,2 @@
-usage: htmligator [-h] [-v] top_folder [top_folder ...]
+usage: htmligator [-h] [-v] [-i] top_folder [top_folder ...]
 htmligator: error: the following arguments are required: top_folder
