@@ -5,8 +5,9 @@ run:
 	rm -f tests/test-data/sample1.html tests/test-data/sample1/*.html tests/test-data/sample1.zip
 	poetry run htmligator tests/test-data/sample1 tests/test-data/sample1
 	unzip -t ./sample1.zip
-build:
+set-version:
 	scripts/set-version.sh
+build:
 	poetry build
 install:
 	poetry install
@@ -23,7 +24,7 @@ test:
 	 --cov-report html:coverage/coverage.html \
 	 --cov-report lcov:coverage/coverage.info
 
-all: clean install flake8 build test
+all: clean set-version install flake8 build test
 
 release:
 	scripts/release.sh

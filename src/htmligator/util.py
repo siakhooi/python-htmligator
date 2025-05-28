@@ -52,7 +52,18 @@ def get_zip_path(zip_parent_path: str, folder_name: str) -> str:
 
 
 def is_browser_supported_image_files(filename: str) -> bool:
-    supported_extensions = (".jpg", ".jpeg", ".png", ".gif", ".webp")
+    supported_extensions = (
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".webp",
+        ".apng",
+        ".avif",
+        ".jfif",
+        ".pjpeg",
+        ".pjp",
+    )
     return filename.lower().endswith(supported_extensions) and (
         not filename.lower().startswith(supported_extensions)
     )

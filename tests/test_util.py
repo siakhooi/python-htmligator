@@ -112,7 +112,29 @@ def test_get_zip_path_100(tmp_path):
 
 
 @pytest.mark.parametrize(
-    "filename", ["a.jpg", "b.jpeg", "c.png", "d.gif", "e.webp"]
+    "filename",
+    [
+        "a.jpg",
+        "b.jpeg",
+        "c.png",
+        "d.gif",
+        "e.webp",
+        "f.apng",
+        "g.avif",
+        "h.jfif",
+        "i.pjpeg",
+        "j.pjp",
+        "aa.a.jpg",
+        "aa.b.jpeg",
+        "aa.c.png",
+        "aa.d.gif",
+        "aa.e.webp",
+        "aa.f.apng",
+        "aa.g.avif",
+        "aa.h.jfif",
+        "aa.i.pjpeg",
+        "aa.j.pjp",
+    ],
 )  # noqa: E501
 def test_is_browser_supported_image_files(filename):
     assert is_browser_supported_image_files(filename)
@@ -129,6 +151,11 @@ def test_is_browser_supported_image_files(filename):
         "a.txt",
         ".jpg",
         ".png",
+        "f.apng2",
+        "g.avif3",
+        "h.jfif5",
+        "i.pjpeg6",
+        "j.pjp7",
     ],
 )
 def test_is_not_browser_supported_image_files(filename):
