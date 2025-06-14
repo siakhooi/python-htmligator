@@ -8,7 +8,19 @@ pip install htmligator
 
 ## Usage
 ```
-$ htmligator folder
+$ htmligator -h
+usage: htmligator [-h] [-v] [-i] top_folder [top_folder ...]
+
+generate wrapper html files to navigate folder contents
+
+positional arguments:
+  top_folder     folder to start create HTML files
+
+options:
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit
+  -i, --img      use IMG tag for images files
+
 ```
 
 
