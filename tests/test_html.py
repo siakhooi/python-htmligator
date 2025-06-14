@@ -6,6 +6,7 @@ from htmligator.html import (
     get_html_for_img_file,
     get_html_for_normal_file,
 )
+import pytest
 
 
 def test_get_html_for_normal_file():
@@ -55,13 +56,22 @@ def test_get_html_for_file_image_file():
     folder = "test_folder"
     name = "test_file.jpg"
     expected_html = f'<li><div><img src="{folder}/{name}" /></div></li>'
-    result = get_html_for_file(name, folder)
+    result = get_html_for_file(name, folder, use_img=True)
     assert result == expected_html
 
 
-def test_get_html_for_file_normal_file():
+@pytest.mark.parametrize("options", [True, False])
+def test_get_html_for_file_normal_file(options):
     folder = "test_folder"
     name = "test_file.txt"
     expected_html = f'<li><a href="{folder}/{name}">{name}</a></li>'
-    result = get_html_for_file(name, folder)
+    result = get_html_for_file(name, folder, use_img=options)
+    assert result == expected_html
+
+
+def test_get_html_for_file_image_file_without_img():
+    folder = "test_folder"
+    name = "test_file.jpg"
+    expected_html = f'<li><a href="{folder}/{name}">{name}</a></li>'
+    result = get_html_for_file(name, folder, use_img=False)
     assert result == expected_html

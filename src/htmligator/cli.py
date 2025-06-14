@@ -31,7 +31,7 @@ def run() -> None:
     parser.add_argument(
         "-i",
         "--img",
-        action="store_false",
+        action="store_true",
         help="use IMG tag for images files",
     )
 

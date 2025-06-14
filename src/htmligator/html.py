@@ -1,8 +1,8 @@
 from htmligator.util import is_browser_supported_image_files
 
 
-def get_html_for_file(name: str, folder: str) -> str:
-    if is_browser_supported_image_files(name):
+def get_html_for_file(name: str, folder: str, use_img: bool) -> str:
+    if use_img and is_browser_supported_image_files(name):
         return get_html_for_img_file(name, folder)
     else:
         return get_html_for_normal_file(name, folder)

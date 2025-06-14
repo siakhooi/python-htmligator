@@ -31,7 +31,9 @@ class Htmligator:
 
         for item in file_list:
             if item["type"] == "file":
-                file_contents += get_html_for_file(item["name"], folder_name)
+                file_contents += get_html_for_file(
+                    item["name"], folder_name, self.config['use_img']
+                )
             else:
                 file_contents += get_html_for_folder(item["name"], folder_name)
                 self.generate_html_files(

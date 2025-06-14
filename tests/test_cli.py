@@ -160,3 +160,76 @@ def test_run_runtime_exception(monkeypatch, capsys, tmp_path):
     expected_output = "Error: Test error\n"
     captured = capsys.readouterr()
     assert captured.err == expected_output
+
+
+def test_htmligator(tmp_path, monkeypatch):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+    p1 = d1 / "file1.txt"
+    p1.touch()
+    p2 = d1 / "file2.jpg"
+    p2.touch()
+
+    monkeypatch.setattr("os.getcwd", lambda: str(tmp_path))
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["htmligator", str(tmp_path / folder_name)],
+    )
+
+    run()
+
+    zip_path = tmp_path / f"{folder_name}.zip"
+    assert zip_path.exists()
+    assert zip_path.is_file()
+    assert zip_path.stat().st_size > 0
+
+    import zipfile
+
+    with zipfile.ZipFile(zip_path, "r") as zipf:
+        assert len(zipf.namelist()) == 3
+        assert "sample/file1.txt" in zipf.namelist()
+        assert "sample/file2.jpg" in zipf.namelist()
+        assert "sample.html" in zipf.namelist()
+
+        sample_html = zipf.read("sample.html").decode("utf-8")
+        assert '<li><a href="sample/file1.txt">file1.txt</a></li>' in sample_html  # noqa: E501
+        assert '<li><a href="sample/file2.jpg">file2.jpg</a></li>' in sample_html  # noqa: E501
+
+
+@pytest.mark.parametrize("option_image", ["-i", "--img"])
+def test_htmligator_use_img(tmp_path, monkeypatch, option_image):
+    folder_name = "sample"
+    d1 = tmp_path / folder_name
+    d1.mkdir()
+    p1 = d1 / "file1.txt"
+    p1.touch()
+    p2 = d1 / "file2.jpg"
+    p2.touch()
+
+    monkeypatch.setattr("os.getcwd", lambda: str(tmp_path))
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["htmligator", option_image, str(tmp_path / folder_name)],
+    )
+
+    run()
+
+    zip_path = tmp_path / f"{folder_name}.zip"
+    assert zip_path.exists()
+    assert zip_path.is_file()
+    assert zip_path.stat().st_size > 0
+
+    import zipfile
+
+    with zipfile.ZipFile(zip_path, "r") as zipf:
+        assert len(zipf.namelist()) == 3
+        assert "sample/file1.txt" in zipf.namelist()
+        assert "sample/file2.jpg" in zipf.namelist()
+        assert "sample.html" in zipf.namelist()
+
+        sample_html = zipf.read("sample.html").decode("utf-8")
+        assert '<li><a href="sample/file1.txt">file1.txt</a></li>' in sample_html  # noqa: E501
+        assert '<li><div><img src="sample/file2.jpg" /></div></li>' in sample_html  # noqa: E501
