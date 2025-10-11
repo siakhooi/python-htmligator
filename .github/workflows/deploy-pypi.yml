@@ -16,7 +16,7 @@ jobs:
           name: dist-3.13
           path: ./dist/
       - run: ls -lr
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.13
       - run: curl -sSL https://install.python-poetry.org | python3 -
