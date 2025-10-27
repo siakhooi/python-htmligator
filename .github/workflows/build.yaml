@@ -36,11 +36,11 @@ jobs:
             --cov-report xml:coverage/coverage.xml \
             --cov-report html:coverage/coverage.html \
             --cov-report lcov:coverage/coverage.info
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: dist-${{ matrix.python-version }}
           path: ./dist/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: coverage-report-${{ matrix.python-version }}
           path: ./coverage/
