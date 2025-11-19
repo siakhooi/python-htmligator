@@ -5,7 +5,7 @@
   "dependencyDashboard": true,
   "packageRules": [
     {
-      "managers": [
+      "matchManagers": [
         "poetry"
       ],
       "matchDepTypes": [
