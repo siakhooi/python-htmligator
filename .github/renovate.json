@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "managers": [
+        "poetry"
+      ],
+      "matchDepTypes": [
+        "dev"
+      ],
+      "groupName": "Poetry dev dependencies"
+    }
+  ]
+}
