@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: renovatebot/github-action@v44
+      - uses: renovatebot/github-action@v44.0.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           renovate-config-file: '.github/renovate.json5'
