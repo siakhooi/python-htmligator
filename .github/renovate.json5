@@ -1,0 +1,15 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:base",
+    "group:allNonMajor", // Group minor and patch updates
+  ],
+  dependencyDashboard: true, // Creates a permanent issue for tracking
+  managers: {
+    poetry: {
+      // Prevents Renvoate from trying to update the core "python" dependency,
+      // which is usually managed by the CI environment.
+      ignoreDeps: ["python"],
+    },
+  },
+}
