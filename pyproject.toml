@@ -38,7 +38,7 @@ packages = [{include = "htmligator", from = "src"}]
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 flake8 = "^7.2.0"
-pytest-mock = "^3.14.0"
+pytest-mock = "^3.15.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
