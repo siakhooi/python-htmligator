@@ -10,6 +10,8 @@ on:
     secrets:
       SONAR_TOKEN:
         required: true
+      QLTY_COVERAGE_TOKEN:
+        required: true
 
 jobs:
   build:
@@ -49,3 +51,8 @@ jobs:
     uses: ./.github/workflows/quality-sonarcloud.yml
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  qltysh:
+    needs: build
+    uses: ./.github/workflows/quality-qltysh.yml
+    secrets:
+      QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
