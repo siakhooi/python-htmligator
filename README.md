@@ -28,6 +28,7 @@ options:
 - https://pypi.org/project/htmligator/
 - https://github.com/siakhooi/python-htmligator
 - https://sonarcloud.io/project/overview?id=siakhooi_python-htmligator
+- https://qlty.sh/gh/siakhooi/projects/python-htmligator
 
 ## Badges
 ![GitHub](https://img.shields.io/github/license/siakhooi/python-htmligator?logo=github)
@@ -51,6 +52,10 @@ options:
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/siakhooi/python-htmligator?label=GPR%20release&logo=github)
 ![GitHub all releases](https://img.shields.io/github/downloads/siakhooi/python-htmligator/total?color=33cb56&logo=github)
 ![GitHub Release Date](https://img.shields.io/github/release-date/siakhooi/python-htmligator?logo=github)
+
+![Quality-Qlty](https://img.shields.io/badge/Quality-Qlty-purple)
+[![Maintainability](https://qlty.sh/gh/siakhooi/projects/python-htmligator/maintainability.svg)](https://qlty.sh/gh/siakhooi/projects/python-htmligator)
+[![Code Coverage](https://qlty.sh/gh/siakhooi/projects/python-htmligator/coverage.svg)](https://qlty.sh/gh/siakhooi/projects/python-htmligator)
 
 ![Quality-Sonar](https://img.shields.io/badge/Quality-SonarCloud-purple)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=siakhooi_python-htmligator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=siakhooi_python-htmligator)
