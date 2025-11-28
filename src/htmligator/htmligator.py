@@ -8,6 +8,10 @@ from htmligator.html import (
     get_html_for_folder,
     get_html_for_header,
     get_html_for_footer,
+    get_html_for_list_start,
+    get_html_for_list_end,
+    get_html_for_list_item_start,
+    get_html_for_list_item_end,
 )
 
 
@@ -28,8 +32,10 @@ class Htmligator:
         html_file_name: str = os.path.join(parent_path, f"{folder_name}.html")
 
         file_contents: str = get_html_for_header(folder_name)
+        file_contents += get_html_for_list_start()
 
         for item in file_list:
+            file_contents += get_html_for_list_item_start()
             if item["type"] == "file":
                 file_contents += get_html_for_file(
                     item["name"], folder_name, self.config['use_img']
@@ -42,7 +48,9 @@ class Htmligator:
                     item["name"],
                     os.path.join(parent_path, folder_name),
                 )
+            file_contents += get_html_for_list_item_end()
 
+        file_contents += get_html_for_list_end()
         file_contents += get_html_for_footer(folder_name)
 
         html_files.append({"name": html_file_name, "contents": file_contents})
