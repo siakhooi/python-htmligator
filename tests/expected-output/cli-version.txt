@@ -1,1 +1,1 @@
-htmligator 0.10.1
+htmligator 0.11.0
