@@ -1,12 +1,15 @@
-# python-htmligator
+# htmligator
+
 generate wrapper html files to navigate folder contents
 
 ## Installation
+
 ```
 pip install htmligator
 ```
 
 ## Usage
+
 ```
 $ htmligator -h
 usage: htmligator [-h] [-v] [-i] top_folder [top_folder ...]
@@ -23,39 +26,39 @@ options:
 
 ```
 
-
 ## Links
+
 - https://pypi.org/project/htmligator/
-- https://github.com/siakhooi/python-htmligator
-- https://sonarcloud.io/project/overview?id=siakhooi_python-htmligator
-- https://qlty.sh/gh/siakhooi/projects/python-htmligator
+- https://github.com/siakhooi/htmligator
+- https://sonarcloud.io/project/overview?id=siakhooi_htmligator
+- https://qlty.sh/gh/siakhooi/projects/htmligator
 
 ## Badges
-![GitHub](https://img.shields.io/github/license/siakhooi/python-htmligator?logo=github)
-![GitHub last commit](https://img.shields.io/github/last-commit/siakhooi/python-htmligator?logo=github)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/siakhooi/python-htmligator?logo=github)
-![GitHub issues](https://img.shields.io/github/issues/siakhooi/python-htmligator?logo=github)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/siakhooi/python-htmligator?logo=github)
-![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/siakhooi/python-htmligator?logo=github)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/siakhooi/python-htmligator?logo=github)
-![GitHub top language](https://img.shields.io/github/languages/top/siakhooi/python-htmligator?logo=github)
-![GitHub language count](https://img.shields.io/github/languages/count/siakhooi/python-htmligator?logo=github)
-![Lines of code](https://img.shields.io/tokei/lines/github/siakhooi/python-htmligator?logo=github)
-![GitHub repo size](https://img.shields.io/github/repo-size/siakhooi/python-htmligator?logo=github)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/siakhooi/python-htmligator?logo=github)
+
+![GitHub](https://img.shields.io/github/license/siakhooi/htmligator?logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/siakhooi/htmligator?logo=github)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/siakhooi/htmligator?logo=github)
+![GitHub issues](https://img.shields.io/github/issues/siakhooi/htmligator?logo=github)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/siakhooi/htmligator?logo=github)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/siakhooi/htmligator?logo=github)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/siakhooi/htmligator?logo=github)
+![GitHub top language](https://img.shields.io/github/languages/top/siakhooi/htmligator?logo=github)
+![GitHub language count](https://img.shields.io/github/languages/count/siakhooi/htmligator?logo=github)
+![GitHub repo size](https://img.shields.io/github/repo-size/siakhooi/htmligator?logo=github)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/siakhooi/htmligator?logo=github)
 
 ![Workflow](https://img.shields.io/badge/Workflow-github-purple)
-![workflow](https://github.com/siakhooi/python-htmligator/actions/workflows/build.yaml/badge.svg)
-![workflow](https://github.com/siakhooi/python-htmligator/actions/workflows/workflow-deployments.yml/badge.svg)
+![workflow](https://github.com/siakhooi/htmligator/actions/workflows/build.yaml/badge.svg)
+![workflow](https://github.com/siakhooi/htmligator/actions/workflows/workflow-deployments.yml/badge.svg)
 
 ![Release](https://img.shields.io/badge/Release-github-purple)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/siakhooi/python-htmligator?label=GPR%20release&logo=github)
-![GitHub all releases](https://img.shields.io/github/downloads/siakhooi/python-htmligator/total?color=33cb56&logo=github)
-![GitHub Release Date](https://img.shields.io/github/release-date/siakhooi/python-htmligator?logo=github)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/siakhooi/htmligator?label=GPR%20release&logo=github)
+![GitHub all releases](https://img.shields.io/github/downloads/siakhooi/htmligator/total?color=33cb56&logo=github)
+![GitHub Release Date](https://img.shields.io/github/release-date/siakhooi/htmligator?logo=github)
 
 ![Quality-Qlty](https://img.shields.io/badge/Quality-Qlty-purple)
-[![Maintainability](https://qlty.sh/gh/siakhooi/projects/python-htmligator/maintainability.svg)](https://qlty.sh/gh/siakhooi/projects/python-htmligator)
-[![Code Coverage](https://qlty.sh/gh/siakhooi/projects/python-htmligator/coverage.svg)](https://qlty.sh/gh/siakhooi/projects/python-htmligator)
+[![Maintainability](https://qlty.sh/gh/siakhooi/projects/htmligator/maintainability.svg)](https://qlty.sh/gh/siakhooi/projects/htmligator)
+[![Code Coverage](https://qlty.sh/gh/siakhooi/projects/htmligator/coverage.svg)](https://qlty.sh/gh/siakhooi/projects/htmligator)
 
 ![Quality-Sonar](https://img.shields.io/badge/Quality-SonarCloud-purple)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=siakhooi_python-htmligator&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=siakhooi_python-htmligator)

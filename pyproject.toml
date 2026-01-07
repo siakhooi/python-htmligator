@@ -21,10 +21,10 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://github.com/siakhooi/python-htmligator"
-repository = "https://github.com/siakhooi/python-htmligator"
-documentation = "https://github.com/siakhooi/python-htmligator/wiki"
-"Bug Tracker" = "https://github.com/siakhooi/python-htmligator/issues"
+homepage = "https://github.com/siakhooi/htmligator"
+repository = "https://github.com/siakhooi/htmligator"
+documentation = "https://github.com/siakhooi/htmligator/wiki"
+"Bug Tracker" = "https://github.com/siakhooi/htmligator/issues"
 
 [project.scripts]
 htmligator = 'htmligator.cli:run'
