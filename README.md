@@ -30,7 +30,7 @@ options:
 
 - https://pypi.org/project/htmligator/
 - https://github.com/siakhooi/htmligator
-- https://sonarcloud.io/project/overview?id=siakhooi_htmligator
+- https://sonarcloud.io/project/overview?id=siakhooi_python-htmligator
 - https://qlty.sh/gh/siakhooi/projects/htmligator
 
 ## Badges
